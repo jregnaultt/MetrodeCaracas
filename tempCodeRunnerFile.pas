@@ -1,0 +1,1 @@
+desde el ciclo el repeat hasta el ciclo for es una comprobacion para que la variable cedula solo pueda tener caracteres numericos
