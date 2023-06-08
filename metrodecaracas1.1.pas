@@ -29,10 +29,7 @@ begin
     clrscr;
     writeln(   'Bienvenid@ al Metro de Caracas');
     writeln('  ¿Desea comprar un boleto?');
-<<<<<<< HEAD
     writeln (' Escriba abajo la opcion que desee');
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
     WriteLn('');
     WriteLn('Si ---------------------------- No');
     readln(travel);
@@ -42,11 +39,8 @@ begin
     if (travel <> 'si') and (travel <> 'no') then
     begin
         WriteLn('Debes selecionar una opcion valida');
-<<<<<<< HEAD
         Writeln('Presiona cualquier tecla para volver a ingresar tus datos');
         readkey;
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
         isLobby := true;
     end;
     until (isLobby=false);
@@ -60,10 +54,7 @@ begin
             repeat
             isLetter := false;          
             clrscr;
-<<<<<<< HEAD
             Writeln ('Por favor rellene los datos solicitados');
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
             writeln('A continuacion ingrese su nombre');
             readln(nombre);
             writeln('');
@@ -223,11 +214,7 @@ until isTravel;
             begin
             isTicket := true;
             WriteLn('¿Que boleto desea comprar?');
-<<<<<<< HEAD
             Writeln('Para visualizar nuevamente las opciones presione 0');
-=======
-            Writeln('Si quieres ver nuevamente las opciones presiona 0');
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
             WriteLn('');
             readln(ticketType);
             ticketType := lowercase(ticketType);
@@ -279,11 +266,7 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', a );
-<<<<<<< HEAD
                     WriteLn('El total a pagar seria: ',ticketAmount*ticketPrice, '$');
-=======
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
                     WriteLn('');
                     WriteLn('Presiona cualquier tecla para continuar');
                     readkey;
@@ -735,9 +718,5 @@ until isTravel;
     writeln('|- Petare 2    |- Warairarepano   |- 5 de Julio      |- 19 de Abril |- 24 de Julio                                 |');
     Textcolor(white);
     WriteLn('|_____________________________________________________________________________________________________________     |');
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
 end.
