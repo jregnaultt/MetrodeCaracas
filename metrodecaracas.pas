@@ -2,10 +2,10 @@ program MetroDeCaracas;
 uses crt;
 var
     simpleTicket: integer;
-    isNumber, isTravel, isRepeat, isTicket, isLetter, isLobby: boolean;
+    isNumber, isTravel, isRepeat, isTicket, isLetter, isLobby, isSubestacion, isSameEstacion: boolean;
     repeatTravel,  repeatTicket, iNumber, iCedula, iLetter: integer;
-    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta: integer;
-    travel,  nombre, apellido, cedula, cedulaSinPuntos: string;
+    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta, masEstacion, metroLinea: integer;
+    travel,  nombre, apellido, cedula, cedulaSinPuntos, metroEstacion, estacionPartida, estacionLlegada: string;
     ticketType: char;   
 Const 
     a = 'Ticket/s: Simple ';{Amarillo }
@@ -29,6 +29,7 @@ begin
     clrscr;
     writeln(   'Bienvenid@ al Metro de Caracas');
     writeln('  ¿Desea comprar un boleto?');
+    writeln (' Escriba abajo la opcion que desee');
     WriteLn('');
     WriteLn('Si ---------------------------- No');
     readln(travel);
@@ -38,6 +39,8 @@ begin
     if (travel <> 'si') and (travel <> 'no') then
     begin
         WriteLn('Debes selecionar una opcion valida');
+        Writeln('Presiona cualquier tecla para volver a ingresar tus datos');
+        readkey;
         isLobby := true;
     end;
     until (isLobby=false);
@@ -51,6 +54,7 @@ begin
             repeat
             isLetter := false;          
             clrscr;
+            Writeln ('Por favor rellene los datos solicitados');
             writeln('A continuacion ingrese su nombre');
             readln(nombre);
             writeln('');
@@ -199,7 +203,7 @@ until isTravel;
     writeln ('    |    Integrada     | 30 viajes (Metro y Metrobus)  | 22$ ');
     writeln ('    |                  | 40 viajes (Metro y Metrobus)  | 33$ ');
     textcolor(white);
-    delay(5000);
+    delay(3500);
     clrscr;
     textcolor(LightGray);
     WriteLn('Presiona 1 si quiere comprar su boleto/s ');
@@ -210,7 +214,7 @@ until isTravel;
             begin
             isTicket := true;
             WriteLn('¿Que boleto desea comprar?');
-            Writeln('Si quieres ver nuevamente las opciones presiona 0');
+            Writeln('Para visualizar nuevamente las opciones presione 0');
             WriteLn('');
             readln(ticketType);
             ticketType := lowercase(ticketType);
@@ -262,7 +266,7 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', a );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    WriteLn('El total a pagar seria: ',ticketAmount*ticketPrice, '$');
                     WriteLn('');
                     WriteLn('Presiona cualquier tecla para continuar');
                     readkey;
@@ -270,6 +274,9 @@ until isTravel;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                    WriteLn('');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'b':begin
@@ -301,6 +308,9 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
+                    WriteLn('');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'c':begin
@@ -329,6 +339,8 @@ until isTravel;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 2*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'd':begin
@@ -360,6 +372,8 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'e':begin
@@ -388,6 +402,8 @@ until isTravel;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 10*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'f':begin
@@ -419,6 +435,8 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'g':begin
@@ -447,6 +465,8 @@ until isTravel;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 10*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'h':begin
@@ -478,6 +498,8 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
+                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    readkey;                      
                     until (ticketAmount>0);
         end;
         'i':begin
@@ -524,6 +546,8 @@ until isTravel;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 20*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                              
                         end;
                     if (ticketMTarjeta = 2) then
                         begin
@@ -541,6 +565,8 @@ until isTravel;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 30*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                              
                         end;  
                     if (ticketMTarjeta = 3) then
                         begin
@@ -558,6 +584,8 @@ until isTravel;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 40*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                          
                         end;
                     if (ticketMTarjeta<>1) or  (ticketMTarjeta<>2) or (ticketMTarjeta<>3) then
                         begin
@@ -577,6 +605,7 @@ until isTravel;
                     writeln('Opcion 1: 20 viajes (metro y metrobus) -> 11$');
                     writeln('Opcion 2: 30 viajes (metro y metrobus) -> 22$');
                     writeln('Opcion 3: 40 viajes (metro y metrobus) -> 33$');
+                    writeln('-----------------------------------------------------------------------');
                     WriteLn('');
                     repeat
                     WriteLn('¿Que opcion desea elegir?');
@@ -611,6 +640,8 @@ until isTravel;
                             ticketMetro := 20*ticketAmount;
                             ticketMBus := 20*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                          
                         end;
                     if (ticketMTarjeta = 2) then
                         begin
@@ -629,6 +660,8 @@ until isTravel;
                             ticketMetro := 30*ticketAmount;
                             ticketMBus := 30*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                              
                         end;  
                     if (ticketMTarjeta = 3) then
                         begin
@@ -649,6 +682,8 @@ until isTravel;
                             WriteLn('Trendras disponible: ');
                             WriteLn(ticketMetro, ' viaje/s en metro');
                             WriteLn(ticketMBus, ' viaje/s en metrobus');
+                            WriteLn('Por favor presiona cualquier tecla para continuar');
+                            readkey;                            
                         end;                                 
                     until (ticketAmount>0);
                     until (ticketMTarjeta >= 1) and (ticketMTarjeta <= 3);
@@ -656,6 +691,8 @@ until isTravel;
     end;
 // el case que se encuentra arriba, basicamente es selector de tickets, utilizado para saber que tickets se eligio, cuantos viajes/viajes tiene disponible
 // cuanto es el monto a pagar, y en caso de MetroTarjeta/MetroTarjetaIntegrada tiene un if dentro de su seleccion para poder elegir una opcion correspondiente.
+repeat 
+    clrscr;
     textcolor(lightblue);
     Writeln('| Linea 1:');
     textcolor(white);
@@ -686,6 +723,19 @@ until isTravel;
     textcolor(lightcyan);
     WriteLn('|- Zona Rental |- Maternidad      |- Parque Central  |- Antimano   |- Capuchinos    |- La Yaragua |-Nuevo Circo    |');
     writeln('|- Artigas     |- Mamera          |- La Paz          |- Teatros    |- Carapita      |- Ruiz Pineda/Las Adjuntas    |');
+    textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');;
+    WriteLn('');
+    writeln('Para ver las demas estaciones, presiona 1');
+    writeln('Para seleccionar una de las estaciones ya vista, presiona 2');
+    readln(masEstacion);
+    if (masEstacion<> 1) and (masEstacion <> 2) then
+        begin
+            WriteLn('Debes presionar una opcion valida ')
+        end;
+    until (masEstacion>=1) and (masEstacion<=2);
+    if (masEstacion=1) then
+    begin
     Textcolor(lightmagenta);
     Writeln('| Linea 5:');
     Textcolor(white);
@@ -714,5 +764,507 @@ until isTravel;
     writeln('|- Petare 2    |- Warairarepano   |- 5 de Julio      |- 19 de Abril |- 24 de Julio                                 |');
     Textcolor(white);
     WriteLn('|_____________________________________________________________________________________________________________     |');
-
+    end;
+	writeln('');
+    repeat
+    WriteLn('Selecciona la linea que quieres usar.');
+    Write('Linea: '); read(metroLinea);
+    if (metroLinea<>1) and (metroLinea<>2) and (metroLinea<>3) and (metroLinea<>4) and (metroLinea<>5) and (metroLinea<>6) and (metroLinea<>7) and (metroLinea<>8) then
+        begin
+            WriteLn('Debes seleecionar una linea valida (1-8)');
+        end;
+    until(metroLinea=1) or (metroLinea=2) or (metroLinea=3) or (metroLinea=4) or (metroLinea=5) or (metroLinea=6) or (metroLinea=7) or (metroLinea=8); 
+    clrscr;
+    isSubestacion := true;
+    case metroLinea of
+        1:begin
+            repeat
+            clrscr;
+            textcolor(lightblue);
+            Writeln('| Linea 1:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(LightBlue);
+            Writeln('|- Propatria   |- Capitolio       |- Plaza Venezuela |- Miranda    |- Perez Bonalde |- La Hoyada  |- Sabana Grande |');
+            WriteLn('|- Plaza sucre |- Parque Carabobo |- Chacaito        |- Gato negro |- Bellas artes  |- Chacao     |- La california |');
+            Writeln('|- Agua salud  |- Colegio de Ing  |- Los Dos Caminos |- Petare     |- Cabo Amarillo |- Palo Verde |- Altamira       |');
+            WriteLn('|- Los Cortijos                                                                                                    |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'propatria') and (estacionPartida <> 'plaza sucre') and (estacionPartida <> 'agua salud') and (estacionPartida <> 'los cortijos') and (estacionPartida <> 'capitolio')
+            and (estacionPartida <> 'parque carabobo') and (estacionPartida <> 'colegio de ing') and (estacionPartida <> 'plaza venezuela') and (estacionPartida <> 'chacaito') and (estacionPartida <> 'los dos caminos')
+            and (estacionPartida <> 'miranda') and (estacionPartida <> 'gato negro') and (estacionPartida <> 'petare') and (estacionPartida <> 'perez bonalde') and (estacionPartida <> 'bellas artes')
+            and (estacionPartida <> 'cabo amarillo') and (estacionPartida <> 'la hoyada') and (estacionPartida <> 'chacao') and (estacionPartida <> 'palo verde') and (estacionPartida <> 'sabana grande')
+            and (estacionPartida <> 'la california')  and (estacionPartida <> 'altamira') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'propatria') or (estacionPartida = 'plaza sucre') or (estacionPartida = 'agua salud') or (estacionPartida  = 'los cortijos') or (estacionPartida = 'capitolio')
+            or (estacionPartida = 'parque carabobo') or (estacionPartida = 'colegio de ing') or (estacionPartida = 'plaza venezuela') or (estacionPartida = 'chacaito') or (estacionPartida = 'los dos caminos')
+            or (estacionPartida = 'miranda') or (estacionPartida = 'gato negro') or (estacionPartida = 'petare') or (estacionPartida = 'perez bonalde') or (estacionPartida = 'bellas artes')
+            or (estacionPartida = 'cabo amarillo') or (estacionPartida = 'la hoyada') or (estacionPartida = 'chacao') or (estacionPartida = 'palo verde') or (estacionPartida = 'sabana grande')
+            or (estacionPartida = 'la california')  or (estacionPartida = 'altamira') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionllegada <> 'propatria') and (estacionLlegada <> 'plaza sucre') and (estacionLlegada <> 'agua salud') and (estacionLlegada <> 'los cortijos') and (estacionLlegada <> 'capitolio')
+                    and (estacionLlegada <> 'parque carabobo') and (estacionLlegada <> 'colegio de ing') and (estacionLlegada <> 'plaza venezuela') and (estacionLlegada <> 'chacaito') and (estacionLlegada <> 'los dos caminos')
+                    and (estacionLlegada <> 'miranda') and (estacionLlegada <> 'gato negro') and (estacionLlegada <> 'petare') and (estacionLlegada <> 'perez bonalde') and (estacionLlegada <> 'bellas artes')
+                    and (estacionLlegada <> 'cabo amarillo') and (estacionLlegada <> 'la hoyada') and (estacionLlegada <> 'chacao') and (estacionLlegada <> 'palo verde') and (estacionLlegada <> 'sabana grande')
+                    and (estacionLlegada <> 'la california')  and (estacionLlegada <> 'altamira') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'propatria') or (estacionLlegada = 'plaza sucre') or (estacionLlegada = 'agua salud') or (estacionLlegada = 'los cortijos') or (estacionLlegada = 'capitolio')
+                    or (estacionLlegada= 'parque carabobo') or (estacionLlegada= 'colegio de ing') or (estacionLlegada = 'plaza venezuela') or (estacionLlegada = 'chacaito') or (estacionLlegada = 'los dos caminos')
+                    or (estacionLlegada = 'miranda') or (estacionLlegada = 'gato negro') or (estacionLlegada = 'petare') or (estacionLlegada= 'perez bonalde') or (estacionLlegada = 'bellas artes')
+                    or (estacionLlegada = 'cabo amarillo') or (estacionLlegada = 'la hoyada') or (estacionLlegada = 'chacao') or (estacionLlegada = 'palo verde') or (estacionLlegada = 'sabana grande')
+                    or (estacionLlegada = 'la california')  or (estacionLlegada = 'altamira') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        2:begin
+            repeat
+            clrscr;
+            textcolor(lightred);
+            Writeln('| Linea 2:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightred);
+            writeln('|- El silencio |- La Paz          |- Capuchinos      |- Mamera     |- Caricuao      |- Antimano   |- La Yaguara    |');
+            writeln('|- Maternidad  |- Carapita        |- Zoologico       |- Artiguas   |- Ruiz Pineda/Las Adjuntas                     |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'el silencio') and (estacionPartida <> 'la paz') and (estacionPartida <> 'capuchinos') and (estacionPartida <> 'mamera') and (estacionPartida <> 'caricuao')
+            and (estacionPartida <> 'antimano') and (estacionPartida <> 'la yaguara') and (estacionPartida <> 'maternidad') and (estacionPartida <> 'carapita') and (estacionPartida <> 'zoologico')
+            and (estacionPartida <> 'artiguas') and (estacionPartida <> 'ruiz pineda') and (estacionPartida <> 'las adjuntas') and (estacionPartida<>'ruiz pineda/las adjuntas') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'el silencio') or (estacionPartida = 'la paz') or (estacionPartida = 'capuchinos') or (estacionPartida  = 'mamera') or (estacionPartida = 'caricuao')
+            or (estacionPartida = 'antimano') or (estacionPartida = 'la yaguara') or (estacionPartida = 'maternidad') or (estacionPartida = 'carapita') or (estacionPartida = 'zoologico')
+            or (estacionPartida = 'miranda') or (estacionPartida = 'gato negro') or (estacionPartida = 'petare') or (estacionPartida = 'perez bonalde') or (estacionPartida = 'bellas artes')
+            or (estacionPartida = 'artiguas') or (estacionPartida = 'ruiz pineda') or (estacionPartida = 'las adjuntas') or (estacionPartida = 'ruiz pineda/las adjuntas') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'el silencio') and (estacionLlegada <> 'la paz') and (estacionLlegada <> 'capuchinos') and (estacionLlegada <> 'mamera') and (estacionLlegada <> 'caricuao')
+                    and (estacionLlegada <> 'antimano') and (estacionLlegada <> 'la yaguara') and (estacionLlegada <> 'maternidad') and (estacionLlegada <> 'carapita') and (estacionLlegada <> 'zoologico')
+                    and (estacionLlegada <> 'artiguas') and (estacionLlegada<> 'ruiz pineda') and (estacionLlegada <> 'las adjuntas') and (estacionLlegada='ruiz pineda/las adjunta') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'el silencio') or (estacionLlegada = 'la paz') or (estacionLlegada = 'capuchinos') or (estacionLlegada  = 'mamera') or (estacionLlegada = 'caricuao')
+                    or (estacionLlegada = 'antimano') or (estacionLlegada = 'la yaguara') or (estacionLlegada = 'maternidad') or (estacionLlegada = 'carapita') or (estacionLlegada = 'zoologico')
+                    or (estacionLlegada = 'miranda') or (estacionLlegada = 'gato negro') or (estacionLlegada = 'petare') or (estacionLlegada = 'perez bonalde') or (estacionLlegada = 'bellas artes')
+                    or (estacionLlegada = 'artiguas') or (estacionLlegada = 'ruiz pineda') or (estacionLlegada= 'las adjuntas') or (estacionLlegada = 'ruiz pineda/las adjuntas') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        3:begin
+            repeat
+            clrscr;
+            textcolor(lightgreen);
+            Writeln('| Linea 3:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightgreen);
+            WriteLn('|- Mercado     |- Los Jardines    |- Los Simbolos    |- El Valle   |- La Rinconada  |- Coche      |- La Bandera    |');
+            WriteLn('|- Plaza Venezuela                |- Ciudad Universitaria                                                          |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'mercado') and (estacionPartida <> 'los jardines') and (estacionPartida <> 'los simbolos') and (estacionPartida <> 'el valle') and (estacionPartida <> 'la rinconada')
+            and (estacionPartida <> 'coche') and (estacionPartida <> 'la bandera') and (estacionPartida <> 'plaza venezuela') and (estacionPartida <> 'ciudad universitaria') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'mercado') or (estacionPartida = 'los jardines') or (estacionPartida = 'los simbolos') or (estacionPartida  = 'el valle') or (estacionPartida = 'la rinconada')
+            or (estacionPartida = 'coche') or (estacionPartida = 'la bandera') or (estacionPartida = 'plaza venezuela') or (estacionPartida = 'ciudad universitaria') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'mercado') and (estacionLlegada <> 'los jardines') and (estacionLlegada <> 'los simbolos') and (estacionLlegada <> 'el valle') and (estacionLlegada <> 'la rinconada')
+                    and (estacionLlegada <> 'coche') and (estacionLlegada <> 'la bandera') and (estacionLlegada <> 'plaza venezuela') and (estacionLlegada <> 'ciudad universitaria') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'mercado') or (estacionLlegada = 'los jardines') or (estacionLlegada = 'los simbolos') or (estacionLlegada  = 'el valle') or (estacionLlegada = 'la rinconada')
+                    or (estacionLlegada = 'coche') or (estacionLlegada = 'la bandera') or (estacionLlegada = 'plaza venezuela') or (estacionLlegada = 'ciudad universitaria') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        4:begin
+            repeat
+            clrscr;
+            textcolor(lightcyan);
+            Writeln('| Linea 4:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightcyan);
+            WriteLn('|- Zona Rental |- Maternidad      |- Parque Central  |- Antimano   |- Capuchinos    |- La Yaragua |- Nuevo Circo   |');
+            writeln('|- Artigas     |- Mamera          |- La Paz          |- Teatros    |- Carapita      |- Ruiz Pineda/Las Adjuntas    |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'zona rental') and (estacionPartida <> 'maternidad') and (estacionPartida <> 'parque central') and (estacionPartida <> 'antimano') and (estacionPartida <> 'capuchinos')
+            and (estacionPartida <> 'la yaragua') and (estacionPartida <> 'nuevo circo') and (estacionPartida <> 'artigas') and (estacionPartida <> 'mamera') and (estacionPartida <> 'la paz') and (estacionPartida <> 'teatros') 
+            and (estacionPartida <> 'carapita') and (estacionPartida <> 'ruiz pineda') and (estacionPartida <> 'las adjuntas') and (estacionPartida<>'ruiz pineda/las adjuntas')  then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'zona rental') or (estacionPartida = 'maternidad') or (estacionPartida = 'parque central') or (estacionPartida  = 'antimano') or (estacionPartida = 'capuchinos')
+            or (estacionPartida = 'la yaragua') or (estacionPartida = 'nuevo circo') or (estacionPartida = 'artigas') or (estacionPartida = 'mamera') or (estacionPartida = 'la paz') or (estacionPartida = 'teatros')
+            or (estacionPartida = 'ruiz pineda') or (estacionPartida = 'las adjuntas') or (estacionPartida = 'ruiz pineda/las adjuntas') or (estacionPartida = 'carapita') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'zona rental') and (estacionLlegada <> 'maternidad') and (estacionLlegada <> 'parque central') and (estacionLlegada <> 'antimano') and (estacionLlegada <> 'capuchinos')
+                    and (estacionLlegada <> 'la yaragua') and (estacionLlegada <> 'nuevo circo') and (estacionLlegada <> 'artigas') and (estacionLlegada <> 'mamera') and (estacionLlegada <> 'la paz')
+                    and (estacionLlegada <> 'teatros') and (estacionLlegada <> 'carapita') and (estacionLlegada<> 'ruiz pineda') and (estacionLlegada <> 'las adjuntas') and (estacionLlegada='ruiz pineda/las adjunta')  then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'zona rental') or (estacionLlegada = 'maternidad') or (estacionLlegada = 'parque central') or (estacionLlegada  = 'antimano') or (estacionLlegada = 'capuchinos')
+                    or (estacionLlegada = 'la yaragua') or (estacionLlegada = 'nuevo circo') or (estacionLlegada = 'artigas') or (estacionLlegada = 'mamera') or (estacionLlegada = 'la paz')
+                    or (estacionLlegada = 'teatros') or (estacionLlegada = 'carapita') or (estacionLlegada = 'ruiz pineda') or (estacionLlegada= 'las adjuntas') or (estacionLlegada = 'ruiz pineda/las adjuntas') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        5:begin
+            repeat
+            clrscr;
+            textcolor(lightmagenta);
+            Writeln('| Linea 5:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightmagenta);
+            writeln('|- Bello Monte |- Warairarepano   |- Las Mercedes    |- El Marquez |- Bello Campo   |- Boleitas   |- Hugo Chavez   |');
+            WriteLn('|- MonteCristo |- Parque Simon Bolivar                                                                             |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'bello monte') and (estacionPartida <> 'warairarepano') and (estacionPartida <> 'las mercedes') and (estacionPartida <> 'el marquez') and (estacionPartida <> 'bello campo')
+            and (estacionPartida <> 'boleitas') and (estacionPartida <> 'hugo chavez') and (estacionPartida <> 'MonteCristo') and (estacionPartida <> 'Parque Simon Bolivar') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'bello monte') or (estacionPartida = 'warairarepano') or (estacionPartida = 'las mercedes') or (estacionPartida  = 'el marquez') or (estacionPartida = 'bello campo')
+            or (estacionPartida = 'boleitas') or (estacionPartida = 'hugo chavez') or (estacionPartida = 'montecristo') or (estacionPartida = 'parque simon bolivar') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'bello monte') and (estacionLlegada <> 'warairarepano') and (estacionLlegada <> 'las mercedes') and (estacionLlegada <> 'el marquez') and (estacionLlegada <> 'bello campo')
+                    and (estacionLlegada <> 'boleitas') and (estacionLlegada <> 'hugo chavez') and (estacionLlegada <> 'montecristo') and (estacionLlegada <> 'parque simon bolivar')  then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'bello monte') or (estacionLlegada = 'warairarepano') or (estacionLlegada = 'las mercedes') or (estacionLlegada  = 'el marquez') or (estacionLlegada = 'bello campo')
+                    or (estacionLlegada = 'boleitas') or (estacionLlegada = 'hugo chavez') or (estacionLlegada = 'montecristo') or (estacionLlegada = 'parque simon bolivar') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        6:begin
+            repeat
+            clrscr;
+            textcolor(lightmagenta);
+            Writeln('| Linea 5:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightmagenta);
+            writeln('|- Zoologico   |- La Rinconada                                                                                     |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'zoologico') and (estacionPartida <> 'la rinconada') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'zoologico') or (estacionPartida = 'la rinconada') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'zoologico') and (estacionLlegada <> 'la rinconada') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'zoologico') or (estacionLlegada = 'la rinconada') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        7:begin
+            repeat
+            clrscr;
+            textcolor(lightgray);
+            Writeln('| Linea 7:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightgray);
+            WriteLn('|- Las Flores  |- El Cristo       |- Roosevelt       |- Panteon     |- Roca Tarpeya  |- Socorro   |- La Bandera    |');
+            writeln('|- INCES       |- La Hoyada       |- Los Ilustres    |- Presidente Medina                                          |');;
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'las flores') and (estacionPartida <> 'el cristo') and (estacionPartida <> 'roosevelt') and (estacionPartida <> 'panteon') and (estacionPartida <> 'roca tarpeya')
+            and (estacionPartida <> 'socorro') and (estacionPartida <> 'la bandera') and (estacionPartida <> 'inces') and (estacionPartida <> 'la hoyada') and (estacionPartida <> 'los ilustres') and (estacionPartida <> 'presidente medina') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'las flores') or (estacionPartida = 'el cristo') or (estacionPartida = 'roosevelt') or (estacionPartida  = 'panteon') or (estacionPartida = 'roca tarpeya')
+            or (estacionPartida = 'socorro') or (estacionPartida = 'la bandera') or (estacionPartida = 'inces') or (estacionPartida = 'la hoyada') or (estacionPartida = 'los ilustres') or (estacionPartida = 'presidente medina') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'las flores') and (estacionLlegada <> 'el cristo') and (estacionLlegada <> 'roosevelt') and (estacionLlegada <> 'panteon') and (estacionLlegada <> 'roca tarpeya')
+                    and (estacionLlegada <> 'socorro') and (estacionLlegada <> 'la bandera') and (estacionLlegada <> 'inces') and (estacionLlegada <> 'la hoyada') and (estacionLlegada <> 'los ilustres')
+                    and (estacionLlegada <> 'presidente medina') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'las flores') or (estacionLlegada = 'el cristo') or (estacionLlegada = 'roosevelt') or (estacionLlegada  = 'panteon') or (estacionLlegada = 'roca tarpeya')
+                    or (estacionLlegada = 'socorro') or (estacionLlegada = 'la bandera') or (estacionLlegada = 'inces') or (estacionLlegada = 'la hoyada') or (estacionLlegada = 'los ilustres')
+                    or (estacionLlegada = 'presidente medina')then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;
+        8:begin
+            repeat
+            clrscr;
+            textcolor(lightgray);
+            Writeln('| Linea 7:');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            textcolor(Lightgray);
+            writeln('|- Petare 2    |- Warairarepano   |- 5 de Julio      |- 19 de Abril |- 24 de Julio                                 |');
+            textcolor(white);
+            WriteLn('______________________________________________________________________________________________________________     |');
+            writeln('');
+            write('Escribe el nombre tu subestacion de partida: '); 
+            ReadLn(estacionPartida);
+            estacionPartida := lowercase(estacionPartida);
+            
+            if (estacionPartida <> 'petare 2') and (estacionPartida <> 'warairarepano') and (estacionPartida <> '5 de julio') and (estacionPartida <> '19 de abril') and (estacionPartida <> '24 de julio') then
+                begin
+                    WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                    isSubestacion := false;
+                    delay(1500);
+                end
+            else if (estacionPartida = 'petare 2') or (estacionPartida = 'warairarepano') or (estacionPartida = '5 de julio') or (estacionPartida  = '19 de abril') or (estacionPartida = '24 de julio') then
+                begin
+                    writeln('Informacion procesada');
+                    isSubestacion := true;
+                    repeat    
+                    isSameEstacion := true;    
+                    WriteLn('');
+                    WriteLn('¿A que subestacion deseas ir?');
+                    write('Deseo ir a la subestacion: ');
+                    ReadLn(estacionLlegada);
+                    estacionLlegada := lowercase(estacionLlegada);
+                    if (estacionPartida = estacionLlegada) then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion diferente a la de partida');
+                        isSameEstacion := false;           
+                        end;
+                    if (estacionLlegada <> 'petare 2') and (estacionLlegada <> 'warairarepano') and (estacionLlegada <> '5 de julio') and (estacionLlegada <> '19 de abril') and (estacionLlegada <> '24 de julio') then
+                        begin
+                        WriteLn('Debes escribir el nombre de una subestacion valida (valida)');
+                        isSubestacion := false;
+                        delay(1500);
+                        end
+                    else if (estacionLlegada = 'petare 2') or (estacionLlegada = 'warairarepano') or (estacionLlegada = '5 de julio') or (estacionLlegada  = '19 de abril') or (estacionLlegada = '24 de julio') then
+                        begin
+                        writeln('');
+                        writeln('Informacion procesada');
+                        isSubestacion := true;
+                        end;    
+                    until isSameEstacion;
+                end;                
+            until  isSubestacion;    
+        end;                                                  
+    end;
+// Se utilizo un case para la seleccion de las lineas y subestaciones    
 end.
