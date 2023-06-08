@@ -9,15 +9,15 @@ var
     ticketType: char;   
 Const 
     a = 'Ticket/s: Simple ';{Amarillo }
-    B = 'Ticket/s: Integrado';{Amarillo}
-    C = 'Ticket/s: Ida y vuelta';{Amarillo}
-    D = 'Ticket/s: Ida y vuelta integrado';{Amarillo}
-    E = 'Ticket/s: Multiabono';{Verde}
-    F = 'Ticket/s: Multiabono integrado';{Verde}
-    G = 'Ticket/s: Estudiantil simple';{Azul}
-    H = 'Ticket/s: Estudiantil integrado';{Azul}
-    I = 'Ticket/s: MetroTarjeta';{Rojo}
-    J = 'Ticket/s: MetroTarjeta Integrada';{Rojo}    
+    b = 'Ticket/s: Integrado';{Amarillo}
+    c = 'Ticket/s: Ida y vuelta';{Amarillo}
+    d = 'Ticket/s: Ida y vuelta integrado';{Amarillo}
+    e = 'Ticket/s: Multiabono';{Verde}
+    f = 'Ticket/s: Multiabono integrado';{Verde}
+    g = 'Ticket/s: Estudiantil simple';{Azul}
+    h = 'Ticket/s: Estudiantil integrado';{Azul}
+    i = 'Ticket/s: MetroTarjeta';{Rojo}
+    j = 'Ticket/s: MetroTarjeta Integrada';{Rojo}    
 
 
     
@@ -654,6 +654,65 @@ until isTravel;
                     until (ticketMTarjeta >= 1) and (ticketMTarjeta <= 3);
         end;                                                                         
     end;
-//el case que se encuentra arriba, basicamente es selector de tickets, utilizado para saber que tickets se eligio, cuantos viajes/viajes tiene disponible
-// cuanto es el monto a pagar, y en caso de MetroTarjeta/MetroTarjetaIntegrada tiene un if dentro de su seleccion para poder elegir una opcion correspondiente.     
+// el case que se encuentra arriba, basicamente es selector de tickets, utilizado para saber que tickets se eligio, cuantos viajes/viajes tiene disponible
+// cuanto es el monto a pagar, y en caso de MetroTarjeta/MetroTarjetaIntegrada tiene un if dentro de su seleccion para poder elegir una opcion correspondiente.
+    textcolor(lightblue);
+    Writeln('| Linea 1:');
+    textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    textcolor(LightBlue);
+    Writeln('|- Propatria   |- Capitolio       |- Plaza Venezuela |- Miranda    |- Perez Bonalde |- La Hoyada  |- Sabana Grande |');
+    WriteLn('|- Plaza sucre |- Parque Carabobo |- Chacaito        |- Gato negro |- Bellas artes  |- Chacao     |- La california |');
+    Writeln('|- Agua salud  |- Colegio de Ing. |- Los Dos Caminos |- Petare     |- Cabo Amarillo |- Palo Verde |- Altamira      |');
+    WriteLn('|- Los Cortijos                                                                                                    |');
+    textcolor(lightred);
+    Writeln('| Linea 2:');
+    textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    textcolor(lightred);
+    writeln('|- El silencio |- La Paz          |- Capuchinos      |- Mamera     |- Caricuao      |- Antimano   |- La Yaguara    |');
+    writeln('|- Maternidad  |- Carapita        |- Zoologico       |- Artiguas   |- Ruiz Pineda/Las Adjuntas                     |');
+    textcolor(lightgreen);
+    Writeln('| Linea 3:');
+    textcolor(white);
+    writeLn('______________________________________________________________________________________________________________     |');
+    textcolor(lightgreen);
+    WriteLn('|- Mercado     |- Los Jardines    |- Los Simbolos    |- El Valle   |- La Rinconada  |- Coche      |- La Bandera    |');
+    WriteLn('|- Plaza Venezuela                |- Ciudad Universitaria                                                          |');
+    Textcolor(lightcyan);
+    Writeln('| Linea 4:');
+    textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    textcolor(lightcyan);
+    WriteLn('|- Zona Rental |- Maternidad      |- Parque Central  |- Antimano   |- Capuchinos    |- La Yaragua |-Nuevo Circo    |');
+    writeln('|- Artigas     |- Mamera          |- La Paz          |- Teatros    |- Carapita      |- Ruiz Pineda/Las Adjuntas    |');
+    Textcolor(lightmagenta);
+    Writeln('| Linea 5:');
+    Textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    Textcolor(lightmagenta);
+    writeln('|- Bello Monte |- Warairarepano   |- Las Mercedes    |- El Marquez |- Bello Campo   |- Boleitas   |- Hugo Chavez   |');
+    WriteLn('|- MonteCristo |- Parque Simon Bolivar                                                                             |');
+    Textcolor(lightcyan);
+    Writeln('| Linea 6:');
+    Textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    Textcolor(cyan);
+    writeln('|- Zoologico   |- La Rinconada                                                                                     |');
+    Textcolor(lightgray);
+    Writeln('| Linea 7:');
+    Textcolor(white);
+    WriteLn('______________________________________________________________________________________________________________     |');
+    Textcolor(lightgray);
+    WriteLn('|- Las Flores  |- El Cristo       |- Roosevelt       |- Panteon     |- Roca Tarpeya  |- Socorro   |- La Bandera    |');
+    writeln('|- INCES       |- La Hoyada       |- Los Ilustres    |- Presidente Medina                                          |');
+    Textcolor(yellow);
+    Writeln('| Linea 8:');
+    Textcolor(white);
+    WriteLn(' _____________________________________________________________________________________________________________     |');
+    Textcolor(yellow);
+    writeln('|- Petare 2    |- Warairarepano   |- 5 de Julio      |- 19 de Abril |- 24 de Julio                                 |');
+    Textcolor(white);
+    WriteLn('|_____________________________________________________________________________________________________________     |');
+
 end.
