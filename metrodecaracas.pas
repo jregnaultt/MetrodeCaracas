@@ -1,9 +1,14 @@
 program MetroDeCaracas;
 uses crt;
 var
-    isNumber, isTravel, isRepeat: boolean;
-    repeatTravel, iNumber: integer;
-    travel, nombre, apellido, cedula: string;
+    isNumber, isTravel, isRepeat, isTicket: boolean;
+    repeatTravel,  repeatTicket, iNumber: integer;
+    ticketAmount, price, travelType: integer;
+    travel,  nombre, apellido, cedula: string;
+    ticketType: char;
+
+
+    
 
 //menu de viaje y solicitud de datos del cliente 
 begin
@@ -86,6 +91,7 @@ begin
         end;
         'no': begin
             writeln('Gracias por preferirnos, ¡hasta luego!');
+            delay(1500);
             Halt(0);
         end;
     else
@@ -93,5 +99,97 @@ begin
         writeln('Debe seleccionar una opcion correcta');
     end; 
     end;
+//Se utiliza ciclos repetitivos para crear una interfaz y mostar boletos
 until isTravel;
+    clrscr;
+    isTicket := false;    
+    repeat    
+    writeln ('    |    Boletos      |       Cobertura              | Precio           |');
+    writeln ('    -----------------------------------------------------------------------');
+    Textcolor(yellow);
+    writeln ('    | a)  Simple      | 1 viaje en metro             | 10$');
+    Textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    Textcolor(yellow);
+    writeln ('    | b) Integrado    | viaje en metrobus y en metro | 15$');
+    Textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    Textcolor(yellow);
+    writeln ('    | c)Ida y vuelta  | 2 viajes en metro            | 12$');
+    Textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    Textcolor(yellow);
+    writeln ('    | d)Ida y vuelta  | 2 viajes en metro            | 18$');
+    writeln ('    |   integrado     | 2 viajes en metrobus         |    ');
+    Textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    textcolor(LightGreen);
+    writeln ('    | e) MultiAbono   | 10 viajes en metro           | 25$');
+    textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    textcolor(LightGreen);
+    writeln ('    | f) MultiAbono   | 10 viajes en metro           | 30$');
+    writeln ('    |    integrado    | 10 viajes en metrobus        |    ');
+    textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    textcolor(LightBlue);
+    writeln ('    | g) Estudiantil  | 10 viajes en metro           | 8$ ');
+    writeln ('    |      Simple     |                              |    ');
+    textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    textcolor(LightBlue);
+    writeln ('    | h) Estudiantil  | 10 viajes en metro           | 13$ ');
+    writeln ('    |    Integrado    | 20 viajes en metrobus        |     ');
+    textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');;
+    textcolor(LightRed);
+    writeln ('    |                 | 20 viajes                    | 7$ ');
+    writeln ('    | i)MetroTarjeta  | 30 viajes                    | 14  ');
+    writeln ('    |                 | 40 viajes                    | 28    ');
+    textcolor(white);
+    writeln ('    -----------------------------------------------------------------------');
+    textcolor(LightRed);
+    writeln ('    | j)MetroTarjeta | 20 viajes (Metro y Metrobus)  | 11$ ');
+    writeln ('    |    Integrada    | 30 viajes (Metro y Metrobus) | 22$ ');
+    writeln ('    |                 | 40 viajes (Metro y Metrobus) | 33$ ');
+    textcolor(white);
+    delay(5000);
+    clrscr;
+    WriteLn('Presiona 1 si quiere comprar su boleto/s ');
+    WriteLn('Presiona 2 si desea volver a ver la lista de boletos');
+    readln(repeatTicket);
+    if (repeatTicket=1) then
+            begin
+            isTicket := true;
+            WriteLn('¿Que boleto desea comprar?');
+            Writeln('Si quieres ver nuevamente las opciones presiona 0');
+            readln(ticketType);
+            if ticketType = '0' then
+                begin
+                    isTicket := false;
+                    clrscr;
+                end
+                else if (ticketType='a') or (ticketType='b') or (ticketType='c') or (ticketType='d') or (ticketType='e') or (ticketType='f') or (ticketType='g') or (ticketType='h') or (ticketType='i') or (ticketType='j') then
+                begin
+                    isTicket:= true;
+                end
+                else
+                begin
+                    isTicket := false;
+                    WriteLn('Oprimiste una opcion invalida');
+                    WriteLn('Te enseñare otra vez las opciones...');
+                    delay(2000);
+                    clrscr;
+                end;  
+            end;
+    if (repeatTicket=2) then
+            begin
+            isTicket := false;
+            end;
+    if (repeatTicket<>1) and (repeatTicket<>2) then
+            begin
+            WriteLn('Debes seleccionar una opcion valida');
+            end;                
+    until isTicket;
+    
 end.
