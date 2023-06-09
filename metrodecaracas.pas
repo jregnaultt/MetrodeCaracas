@@ -4,11 +4,12 @@ var
     simpleTicket: integer;
     isNumber, isTravel, isRepeat, isTicket, isLetter, isLobby, isSubestacion, isSameEstacion, isPassword: boolean;
     repeatTravel,  repeatTicket, iNumber, iCedula, iLetter: integer;
-    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta, masEstacion, metroLinea, totalAmount: integer;
-    password, readPassword: string;
-    travel,  nombre, apellido, cedula, cedulaSinPuntos, metroEstacion, estacionPartida, estacionLlegada: string;
+    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta, masEstacion, metroLinea, totalAmount, dineroCliente, devolucionCliente, opcionViaje, travelMetro: integer;
+    password, readPassword, verificarCedula: string;
+    travel,  nombre, apellido, cedula, cedulaSinPuntos, metroEstacion, estacionPartida, estacionLlegada, procesarPago, useTicket: string;
     ticketType: char;   
-Const 
+Const
+    passAdmin = 1234;
     a = 'Ticket/s: Simple ';{Amarillo }
     b = 'Ticket/s: Integrado';{Amarillo}
     c = 'Ticket/s: Ida y vuelta';{Amarillo}
@@ -25,7 +26,8 @@ Const
 
 //menu de viaje y solicitud de datos del cliente 
 begin
-    repeat
+repeat
+
     isLobby := false;
     clrscr;
     writeln(   'Bienvenid@ al Metro de Caracas');
@@ -1351,6 +1353,7 @@ repeat
         writeln('');
         writeln('Por favor presiona cualquier tecla para continuar');
         readkey;
+        repeat
         clrscr;
         textcolor(lightred);
         writeln(' ___________________________________________________');
@@ -1364,9 +1367,61 @@ repeat
         WriteLn('|');
         writeln('| Ticket/s MetroBus: ',ticketMBus);
         writeln('| Ticket/s Metro: ',ticketMetro); 
-        WriteLn('| Precio total: ', ticketAmount,'$');
+        WriteLn('| Precio total: ', totalAmount,'$');
         writeln('| ___________________________________________________');
-        textcolor(white)        
+        textcolor(white); 
+        writeln('');
+        writeln('¿Desea procesar su pago?');
+        WriteLn('Si ---------------------------- No');
+        readln(procesarPago);
+        procesarPago := lowercase(procesarPago);
+        if (procesarPago <> 'si') and (procesarPago <> 'no') then
+            begin
+                WriteLn('');
+                writeln('DEBES SELECCIONAR ENTRE SI Y NO');
+                delay(1550);
+            end;
+        if (procesarPago = 'si') then
+            begin
+                WriteLn('');
+                WriteLn('');
+                WriteLn('Tiene una deuda de: ', totalAmount, '$');
+                Writeln('¿Cuanto dinero desea ingresar?');
+                Write('Ingresar: ' );
+                read(dineroCliente);
+                if (dineroCliente>totalAmount) then
+                    begin
+                        devolucionCliente := dineroCliente-totalAmount;
+                        writeln('');
+                        WriteLn('Muchas gracias, se le ha entregado un vuelto de ', devolucionCliente,'$');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
+                    end;
+                if (dineroCliente<totalAmount) then
+                    begin
+                        writeln('');
+                        writeln('Disculpe ha ingresado una cantidad, menor a el precio total de la factura');
+                        writeln('No le puedo entregar sus tickets');
+                        WriteLn('');
+                        writeln('Hasta luego!');
+                        halt(55);
+                    end;
+                if (dineroCliente=totalAmount) then
+                    begin
+                        writeln('');
+                        writeln('Muchas gracias por su compra, procede a entregarle los tickets');
+                        WriteLn('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey; 
+                    end;        
+            end;
+        if (procesarPago = 'no') then
+            begin
+                clrscr;
+                WriteLn('Gracias por preferirnos, vuelva pronto!');
+                halt(30);
+            end;                 
+        until (procesarPago='no') or (procesarPago='si');
         end
     else
         begin
@@ -1377,5 +1432,134 @@ repeat
         delay(1110);
         readkey;
         end;
-    until isPassword;               
+    until isPassword;
+    repeat
+    clrscr;
+    textcolor(lightgreen);
+    writeln(' ___________________________________________________');
+    WriteLn('OPCION 1: Utilizar ticket');
+    WriteLn('OPCION 2: Ver datos personales');
+    WriteLn('OPCION 3: Salir del sistema');
+    WriteLn();
+    writeln(' ___________________________________________________');
+    textcolor(white);
+    Writeln('');
+    write('Opcion: ');
+    readln(travelMetro);
+    if (travelmetro<>2) and (travelMetro<>1) and (travelMetro<>0) then
+        begin
+            WriteLn('Muchas gracias por utilizar el sistema del Metro de Caracas, vuelva pronto ');
+            halt(100);
+        end;
+    case travelMetro of
+    1: begin
+    WriteLn('Para utilizar tu boleto debes confirmar tu cedula');
+    write('C.I: ');
+    readln(verificarCedula);
+    if (verificarCedula = cedula) then
+        begin
+            if (ticketMBus > 0) then
+            begin
+                WriteLn('¿Quieres viajar en MetroBus o en Metro');
+                WriteLn('Presiona 1 para viajar en MetroBus');
+                WriteLn('Presiona 2 para viajar en Metro');
+                write('Opcion: ');
+                read(opcionViaje);
+                if (opcionViaje = 1) then
+                    begin
+                            if (ticketMBus = 0) then 
+                        begin
+                        WriteLn('Ya no te quedan tickets de metrobus'); 
+                        end;
+                        ticketMBus := ticketMBus - 1;
+                        writeln(' ___________________________________________________');
+                        writeln('|                  VIAJE                    '); 
+                        WriteLn('|');
+                        WriteLn('|');
+                        WriteLn('| Has utilizado un ticket de MetroBus');
+                        WriteLn('| Te restan: ', ticketMBus, ' tickets');
+                        writeln('| Cedula: ', cedula);
+                        WriteLn('| Nombre: ', nombre);
+                        WriteLn('| Apellido: ', apellido);
+                        WriteLn('|');
+                        WriteLn('|');
+                        writeln('| subestacion de partida: ',estacionPartida);
+                        writeln('| subestacion de llegada: ',estacionLlegada); 
+                        writeln('| ___________________________________________________');
+                        writeln('');
+                        WriteLn('Presiona una opcion diferente para ir al menur');
+                        readkey;
+
+                    end;
+                if (opcionViaje = 1) then
+                    begin
+                        if (ticketMetro = 0) then 
+                        begin
+                        WriteLn('Ya no te quedan tickets de metro'); 
+                        end;
+                        ticketMetro := ticketMetro - 1;
+                        writeln(' ___________________________________________________');
+                        writeln('|                  VIAJE                    '); 
+                        WriteLn('|');
+                        WriteLn('|');
+                        WriteLn('| Has utilizado un ticket de Metro');
+                        WriteLn('| Te restan: ', ticketMetro, ' tickets');
+                        writeln('| Cedula: ', cedula);
+                        WriteLn('| Nombre: ', nombre);
+                        WriteLn('| Apellido: ', apellido);
+                        WriteLn('|');
+                        WriteLn('|');
+                        writeln('| subestacion de partida: ',estacionPartida);
+                        writeln('| subestacion de llegada: ',estacionLlegada); 
+                        writeln('| ___________________________________________________');
+                        writeln('');
+                        WriteLn('Presiona una opcion diferente para ir al menu');
+                        readkey;
+
+            end;        end;                    
+            if (ticketMetro >0 ) then
+                begin
+                    if (ticketMetro = 0) then 
+                        begin
+                        WriteLn('Ya no te quedan tickets de metro'); 
+                        end;
+                        ticketMetro := ticketMetro - 1;
+                        writeln(' ___________________________________________________');
+                        writeln('|                  VIAJE                    '); 
+                        WriteLn('|');
+                        WriteLn('|');
+                        WriteLn('| Has utilizado un ticket de Metro');
+                        WriteLn('| Te restan: ', ticketMetro, ' tickets');
+                        writeln('| Cedula: ', cedula);
+                        WriteLn('| Nombre: ', nombre);
+                        WriteLn('| Apellido: ', apellido);
+                        WriteLn('|');
+                        WriteLn('|');
+                        writeln('| subestacion de partida: ',estacionPartida);
+                        writeln('| subestacion de llegada: ',estacionLlegada); 
+                        writeln('| ___________________________________________________');
+                        writeln('');
+                        WriteLn('Presiona una opcion diferente para ir al menu');
+                        readkey;
+                end;
+        end;
+    end;
+    2: begin
+        writeln(' ___________________________________________________');
+        writeln('C.I: ', cedula);
+        writeln('Nombre: ', nombre);
+        writeln('Apellido: ', apellido);
+        writeln('Clave personal ', password);
+        writeln(' ___________________________________________________');
+        writeln('');
+        WriteLn('Presiona una opcion diferente para ir al menu');
+        readkey;
+    end;
+    3: begin
+        clrscr;
+        writeln('Muchas gracias por preferirnos, vuelva pronto!');
+        Halt;
+    end;
+    end;
+    until (travelMetro=3); 
 end.
