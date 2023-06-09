@@ -2,9 +2,10 @@ program MetroDeCaracas;
 uses crt;
 var
     simpleTicket: integer;
-    isNumber, isTravel, isRepeat, isTicket, isLetter, isLobby, isSubestacion, isSameEstacion: boolean;
+    isNumber, isTravel, isRepeat, isTicket, isLetter, isLobby, isSubestacion, isSameEstacion, isPassword: boolean;
     repeatTravel,  repeatTicket, iNumber, iCedula, iLetter: integer;
-    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta, masEstacion, metroLinea: integer;
+    ticketAmount, ticketPrice, travelType, ticketMetro, ticketMBus, ticketMTarjeta, masEstacion, metroLinea, totalAmount: integer;
+    password, readPassword: string;
     travel,  nombre, apellido, cedula, cedulaSinPuntos, metroEstacion, estacionPartida, estacionLlegada: string;
     ticketType: char;   
 Const 
@@ -29,14 +30,7 @@ begin
     clrscr;
     writeln(   'Bienvenid@ al Metro de Caracas');
     writeln('  ¿Desea comprar un boleto?');
-<<<<<<< HEAD
     writeln (' Escriba abajo la opcion que desee');
-=======
-<<<<<<< HEAD
-    writeln (' Escriba abajo la opcion que desee');
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
     WriteLn('');
     WriteLn('Si ---------------------------- No');
     readln(travel);
@@ -46,16 +40,8 @@ begin
     if (travel <> 'si') and (travel <> 'no') then
     begin
         WriteLn('Debes selecionar una opcion valida');
-<<<<<<< HEAD
         Writeln('Presiona cualquier tecla para volver a ingresar tus datos');
         readkey;
-=======
-<<<<<<< HEAD
-        Writeln('Presiona cualquier tecla para volver a ingresar tus datos');
-        readkey;
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
         isLobby := true;
     end;
     until (isLobby=false);
@@ -69,18 +55,13 @@ begin
             repeat
             isLetter := false;          
             clrscr;
-<<<<<<< HEAD
             Writeln ('Por favor rellene los datos solicitados');
-=======
-<<<<<<< HEAD
-            Writeln ('Por favor rellene los datos solicitados');
-=======
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
             writeln('A continuacion ingrese su nombre');
+            write('Nombre: ');
             readln(nombre);
             writeln('');
             writeln('Ingrese su apellido');
+            write('Apellido: ');
             readln(apellido);
             writeln('');
             //Los siguientes 2 for son utilizados para que el nombre y el apellido solo puedan contener letras, es decir, nada de caracteres especiales, numeros, etc.
@@ -132,13 +113,18 @@ begin
             writeln('Nombre: ', nombre);
             writeln('Apellido: ', apellido);
             writeln('');
+            writeln('Para continuar con la operacion deberas recordar tu contrasena especial');
+            writeln('Esta contrasena seran los primeros 4 digitos de tu cedula, por favor recuerdela.');
+            password := Copy(cedula, 1, 4);
+            WriteLn('Tu contrasena especial es: ', password);
+            writeln('');
             isRepeat := true;
 //este repeat lo que hace es que se tenga que repetir el proceso hasta que se evalue el isTravel correctamente, osea hasta que presionen
 // 2 o 1 para poder o modificar los datos o continuar sencillamente. Si colocas cualquier otro numero que no sea ni 1 ni 2, entonces se repetira
 // que se ha ingresado un valor invalido y que debe presionar 1 para modificar los datos o 2 para continuar.            
             repeat
             writeln('Presiona 1, si deseas modificar tus datos');
-            writeln('Presiona 2, si deseas continuar');
+            writeln('Presiona 2, para continuar a la lista de tickets');
             readln(repeatTravel);
             if repeatTravel = 1 then 
             begin
@@ -187,7 +173,7 @@ until isTravel;
     Textcolor(white);
     writeln ('    -----------------------------------------------------------------------');
     Textcolor(yellow);
-    writeln ('    | c)Ida y vuelta   | 2 viajes en metro            | 12$');
+    writeln ('    | c) Ida y vuelta  | 2 viajes en metro           | 12$');
     Textcolor(white);
     writeln ('    -----------------------------------------------------------------------');
     Textcolor(yellow);
@@ -225,9 +211,11 @@ until isTravel;
     writeln ('    |    Integrada     | 30 viajes (Metro y Metrobus)  | 22$ ');
     writeln ('    |                  | 40 viajes (Metro y Metrobus)  | 33$ ');
     textcolor(white);
-    delay(3500);
+    delay(5000);
     clrscr;
     textcolor(LightGray);
+    WriteLn('Nota: el tipo de ticket, aparece al lado del nombre, ejemplo a) Simple');
+    WriteLn('');
     WriteLn('Presiona 1 si quiere comprar su boleto/s ');
     WriteLn('Presiona 2 si desea volver a ver la lista de boletos');
     WriteLn('');
@@ -235,18 +223,10 @@ until isTravel;
     if (repeatTicket=1) then
             begin
             isTicket := true;
-            WriteLn('¿Que boleto desea comprar?');
-<<<<<<< HEAD
+            WriteLn('¿Que ticket desea comprar?');
             Writeln('Para visualizar nuevamente las opciones presione 0');
-=======
-<<<<<<< HEAD
-            Writeln('Para visualizar nuevamente las opciones presione 0');
-=======
-            Writeln('Si quieres ver nuevamente las opciones presiona 0');
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
-            WriteLn('');
-            readln(ticketType);
+            Write('Tipo: ');
+            read(ticketType);
             ticketType := lowercase(ticketType);
             if ticketType = '0' then
                 begin
@@ -296,24 +276,17 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', a );
-<<<<<<< HEAD
-                    WriteLn('El total a pagar seria: ',ticketAmount*ticketPrice, '$');
-=======
-<<<<<<< HEAD
-                    WriteLn('El total a pagar seria: ',ticketAmount*ticketPrice, '$');
-=======
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
                     WriteLn('');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -335,9 +308,10 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', b );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, podria utilizar viaje en metro o metrobus.');
@@ -347,7 +321,7 @@ until isTravel;
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
                     WriteLn('');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -369,15 +343,17 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', c );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 2*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -399,9 +375,10 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', d );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, podria utilizar viaje en metro o metrobus.');
@@ -410,7 +387,8 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -432,15 +410,17 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', e );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 10*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -462,9 +442,10 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', f );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, podria utilizar viaje en metro o metrobus.');
@@ -473,7 +454,8 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
-                    WriteLn('Por favor presiona cualquier tecla para continuar');
+                    writeln('');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
         end;
@@ -495,14 +477,16 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', g );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                     ticketMetro := 10*ticketAmount;
                     WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                    writeln('');
                     WriteLn('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
@@ -525,9 +509,10 @@ until isTravel;
                     clrscr;
                     WriteLn('¿Estas seguro de llevar?:');
                     WriteLn(ticketAmount, '  ', h );
-                    WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                    totalAmount := ticketAmount*ticketPrice;
+                    WriteLn('En total seria: ',totalAmount, '$');
                     WriteLn('');
-                    WriteLn('Presiona cualquier tecla para continuar');
+                    writeln('Por favor presiona cualquier tecla para continuar');
                     readkey;
                     clrscr;
                     WriteLn('Debido a su ticket, podria utilizar viaje en metro o metrobus.');
@@ -536,6 +521,7 @@ until isTravel;
                     WriteLn('Trendras disponible: ');
                     WriteLn(ticketMetro, ' viaje/s en metro');
                     WriteLn(ticketMBus, ' viaje/s en metrobus');
+                    writeln('');
                     WriteLn('Por favor presiona cualquier tecla para continuar');
                     readkey;                      
                     until (ticketAmount>0);
@@ -576,14 +562,16 @@ until isTravel;
                             writeln('Elegiste la opcion 1');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketAmount, '  ', i );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
-                            WriteLn('Presiona cualquier tecla para continuar');
+                            writeln('Por favor presiona cualquier tecla para continuar');
                             readkey;
                             clrscr;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 20*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            WriteLn('');
                             WriteLn('Por favor presiona cualquier tecla para continuar');
                             readkey;                              
                         end;
@@ -595,7 +583,8 @@ until isTravel;
                             writeln('Elegiste la opcion 2');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketAmount, '  ', i );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
                             WriteLn('Presiona cualquier tecla para continuar');
                             readkey;
@@ -603,6 +592,7 @@ until isTravel;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 30*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            writeln('');
                             WriteLn('Por favor presiona cualquier tecla para continuar');
                             readkey;                              
                         end;  
@@ -614,7 +604,8 @@ until isTravel;
                             writeln('Elegiste la opcion 3');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketAmount, '  ', i );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
                             WriteLn('Presiona cualquier tecla para continuar');
                             readkey;
@@ -622,6 +613,7 @@ until isTravel;
                             WriteLn('Debido a su ticket, solo puede utilizar el metro.');
                             ticketMetro := 40*ticketAmount;
                             WriteLn('Trendras disponible ', ticketMetro, ' viaje/s');
+                            writeln('');
                             WriteLn('Por favor presiona cualquier tecla para continuar');
                             readkey;                          
                         end;
@@ -669,7 +661,8 @@ until isTravel;
                             writeln('Elegiste la opcion 1');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketAmount, '  ', j );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
                             WriteLn('Presiona cualquier tecla para continuar');
                             readkey;
@@ -689,7 +682,8 @@ until isTravel;
                             writeln('Elegiste la opcion 2');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketMTarjeta, '  ', j );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
                             WriteLn('Presiona cualquier tecla para continuar');
                             readkey;
@@ -709,7 +703,8 @@ until isTravel;
                             writeln('Elegiste la opcion 3');
                             WriteLn('¿Estas seguro de llevar?:');
                             WriteLn(ticketAmount, '  ', j );
-                            WriteLn('En total seria: ',ticketAmount*ticketPrice, '$');
+                            totalAmount := ticketAmount*ticketPrice;
+                            WriteLn('En total seria: ',totalAmount, '$');
                             WriteLn('');
                             WriteLn('Presiona cualquier tecla para continuar');
                             readkey;
@@ -802,7 +797,6 @@ repeat
     writeln('|- Petare 2    |- Warairarepano   |- 5 de Julio      |- 19 de Abril |- 24 de Julio                                 |');
     Textcolor(white);
     WriteLn('|_____________________________________________________________________________________________________________     |');
-<<<<<<< HEAD
     end;
 	writeln('');
     repeat
@@ -884,6 +878,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -949,6 +946,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1008,6 +1008,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1071,6 +1074,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1130,6 +1136,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1184,6 +1193,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1245,6 +1257,9 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
@@ -1299,19 +1314,68 @@ repeat
                         writeln('');
                         writeln('Informacion procesada');
                         isSubestacion := true;
+                        writeln('');
+                        writeln('Por favor presiona cualquier tecla para continuar');
+                        readkey;
                         end;    
                     until isSameEstacion;
                 end;                
             until  isSubestacion;    
         end;                                                  
     end;
-// Se utilizo un case para la seleccion de las lineas y subestaciones    
-end.
-=======
-<<<<<<< HEAD
-	
-=======
+// Se utilizo un case para la seleccion de las lineas y subestaciones 
+repeat
+repeat
+    clrscr;
+    writeln('Ingresa tu contrasena especial para proceder con la facturacion');
+    Write('Contrasena: ');
+    ReadLn(readPassword);
+    isNumber := True;
+    for iNumber := 1 to length(readPassword) do
+        begin
+        if not (readPassword[iNumber] in ['0'..'9']) then
+            begin
+            writeln('Has ingresado un caracter no correspondiente a tu contrasena especial.');
+            writeln('Por favor intente nuevamente');
+            isNumber := false;
+            break;
+        end;
+    end;
+    until isNumber;
 
->>>>>>> 0b4c7cb3da1201f36c88be6292536b7572c36589
+    if (readPassword = password) then
+        begin
+        isPassword := true;
+        WriteLn('');
+        WriteLn('Verificacion exitosa');
+        writeln('');
+        writeln('Por favor presiona cualquier tecla para continuar');
+        readkey;
+        clrscr;
+        textcolor(lightred);
+        writeln(' ___________________________________________________');
+        writeln('|                  FACTURACION                     '); 
+        WriteLn('|');
+        WriteLn('|');
+        WriteLn('| Nombre: ', nombre);
+        WriteLn('| Apellido: ', apellido);
+        writeln('| Cedula: ', cedula);
+        WriteLn('|');
+        WriteLn('|');
+        writeln('| Ticket/s MetroBus: ',ticketMBus);
+        writeln('| Ticket/s Metro: ',ticketMetro); 
+        WriteLn('| Precio total: ', ticketAmount,'$');
+        writeln('| ___________________________________________________');
+        textcolor(white)        
+        end
+    else
+        begin
+        isPassword := false;
+        WriteLn('');
+        WriteLn('Contrasena incorrecta; intentalo de nuevo...');
+        writeln('');
+        delay(1110);
+        readkey;
+        end;
+    until isPassword;               
 end.
->>>>>>> a70df27b7a0ec910f37d97bd8684c35ead965624
